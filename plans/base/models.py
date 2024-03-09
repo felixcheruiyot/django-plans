@@ -163,7 +163,7 @@ class AbstractBillingInfo(BaseMixin, models.Model):
     street = models.CharField(_("street"), max_length=200)
     zipcode = models.CharField(_("zip code"), max_length=200)
     city = models.CharField(_("city"), max_length=200)
-    country = models.CharField(verbose_name=_("country"), max_length=200,  null=True, choices=list(CountryField().choices )+ [('', _('Select Country'))])
+    country = models.CharField(verbose_name=_("country"), max_length=200,  null=True, choices=[('', _('Select Country'))] + list(CountryField().choices ))
     shipping_name = models.CharField(
         _("name (shipping)"), max_length=200, blank=True, help_text=_("optional")
     )
