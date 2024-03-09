@@ -349,6 +349,8 @@ class CreateOrderPlanChangeView(CreateOrderView):
         return import_name(policy_class)()
 
     def get_price(self):
+        if not hasattr(self.request.user, 'userplan'):
+            return self.plan
         policy = self.get_policy()
         userplan = self.request.user.userplan
 
