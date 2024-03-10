@@ -872,7 +872,10 @@ class AbstractOrder(BaseMixin, models.Model):
         if country is None:
             country = get_country_code(request)
         else:
-            country = country.code
+            try:
+                country = country.code
+            except:
+                country = country 
         if hasattr(billing_info, "tax_number") and billing_info.tax_number:
             tax_number = AbstractBillingInfo.get_full_tax_number(
                 billing_info.tax_number, country
