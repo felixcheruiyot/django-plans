@@ -182,6 +182,24 @@ class AbstractBillingInfo(BaseMixin, models.Model):
         verbose_name = _("Billing info")
         verbose_name_plural = _("Billing infos")
 
+    @property
+    def first_name(self):
+        name_arr = self.name.split(" ")
+        if len(name_arr) > 0:
+            return name_arr[0]
+        return None
+
+    @property
+    def last_name(self):
+        name_arr = self.name.split(" ")
+        if len(name_arr) > 1:
+            return name_arr[1]
+        return None
+
+    @property
+    def email(self):
+        return self.user.email
+
     @staticmethod
     def get_full_tax_number(tax_number, country):
         number = tax_number
